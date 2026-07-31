@@ -25,14 +25,28 @@ public class Board {
         }
     }
 
-    public void placeShip(int x, int y) {
+    public boolean placeShip(int x, int y) {
         // x -> cols / y -> rows
-        board[y][x] = 'N';
+        if (board[y][x] != 'N') {
+            board[y][x] = 'N';
+            return true;
+        }
+        else {
+            System.out.println("Coordenadas já possuem um navio.");
+            return false;
+        }
     }
 
-    public void removeShip(int x, int y) {
+    public boolean removeShip(int x, int y) {
         // x -> cols / y -> rows
-        board[y][x] = '~';
+        if (board[y][x] == 'N') {
+            board[y][x] = '~';
+            return true;
+        }
+        else {
+            System.out.println("Não há navio nas coordenadas.");
+            return false;
+        }
     }
 
     public int getShipsAlive() {

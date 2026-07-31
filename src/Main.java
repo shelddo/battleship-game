@@ -1,26 +1,25 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class Main {
+    public enum Scene {
+        PLAYERTURN, PCTURN
+    }
     public static void main(String[] args) {
         int boardWidth = 10;
         int boardHeight = 10;
         Board playerBoard = new Board(BoardType.PLAYER, boardWidth, boardHeight);
         Board oppBoard = new Board(BoardType.ENEMY, boardWidth, boardHeight);
-        // desenvolver uma forma que o debugBoard acompanhe o oppBoard, mas mostrando a posição dos navios, para debug.
 
-        playerBoard.placeShip(4, 1);
-        playerBoard.placeShip(5, 8);
-        playerBoard.placeShip(9,4);
 
-        oppBoard.placeShip(3, 2);
-        oppBoard.placeShip(7, 3);
-        oppBoard.placeShip(4, 6);
+    }
 
-        drawTables(true, playerBoard, oppBoard);
-
-        attack(4, 2, oppBoard);
-
-        drawTables(true, playerBoard, oppBoard);
+    private static void computerPlaceShips(int boardWidth, int boardHeight, Board board){
+        Random random = new Random();
+        boolean placed;
+        do {
+            placed = board.placeShip(random.nextInt(boardWidth), random.nextInt(boardHeight));
+        } while (!placed);
     }
 
     private static void attack(int x, int y, Board targetBoard){
